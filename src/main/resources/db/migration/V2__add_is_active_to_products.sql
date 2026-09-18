@@ -1,0 +1,2 @@
+ALTER TABLE product
+    ADD COLUMN is_active BOOLEAN DEFAULT TRUE;

@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
-@Table
+@Table(name ="product")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,4 +23,10 @@ public class Product extends BaseEntity {
 
     private String description;
 
+    private Integer stock;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    private String category;
 }
