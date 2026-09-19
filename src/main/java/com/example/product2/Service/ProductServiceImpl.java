@@ -42,6 +42,11 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.toResponse(savedProduct); // Entity -> DTO
     }
 
+    @Transactional
+    public void deleteProduct(Long id){
+        productRepository.deleteById(id);
+    }
+
 
 
 }
