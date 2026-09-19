@@ -3,14 +3,11 @@ package com.example.product2.controller;
 import com.example.product2.Service.ProductService;
 import com.example.product2.Service.ProductServiceImpl;
 import com.example.product2.dto.Request.ProductRequest;
-import com.example.product2.entity.Product;
-import lombok.RequiredArgsConstructor;
+import com.example.product2.dto.Response.ProductResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 @RestController
@@ -24,17 +21,18 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/list")
-    public List<Product> getAllProducts() {
+    public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id ){return productService.getProductById(id);}
+    public ProductResponse getProductById(@PathVariable Long id ){return productService.getProductById(id);}
 
-    @PostMapping("/addproduct")
-    public Product addProduct(@RequestBody ProductRequest request) {
-        Product createProduct = productService.addProduct(request);
-        return  createProduct;
+    @PostMapping("/create")
+    public ProductResponse addProduct(@RequestBody ProductRequest request) {
+       return productService.addProduct(request);
     }
+
 }

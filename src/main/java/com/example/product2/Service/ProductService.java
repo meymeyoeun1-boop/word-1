@@ -2,20 +2,19 @@ package com.example.product2.Service;
 
 
 import com.example.product2.dto.Request.ProductRequest;
-import com.example.product2.entity.Product;
-import jakarta.persistence.metamodel.SingularAttribute;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import com.example.product2.dto.Response.ProductResponse;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Service
 public  interface ProductService {
 
-    List<Product> getAllProducts();
+    List<ProductResponse> getAllProducts();
 
-    Product getProductById(Long id);
+    ProductResponse getProductById(Long id);
 
-    Product addProduct(ProductRequest request);
+    ProductResponse addProduct(ProductRequest request);
+
+
 }
