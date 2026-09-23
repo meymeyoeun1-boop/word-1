@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper; // Inject the mapper!
 
-    @Override
+
     @Transactional()
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll().stream()

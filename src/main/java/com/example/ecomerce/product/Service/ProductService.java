@@ -10,7 +10,9 @@ import java.util.List;
 @Service
 public  interface ProductService {
 
-    List<ProductResponse> getAllProducts();
+    static List<ProductResponse> getAllProducts() {
+        return null;
+    }
 
     ProductResponse getProductById(Long id);
 
