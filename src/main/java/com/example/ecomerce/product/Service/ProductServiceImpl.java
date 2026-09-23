@@ -4,6 +4,7 @@ import com.example.ecomerce.product.Repository.ProductRepository;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
 import com.example.ecomerce.product.entity.Product;
+import com.example.ecomerce.product.exception.ProductNotFoundException;
 import com.example.ecomerce.product.mapper.ProductMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional()
     public ProductResponse getProductById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+                .orElseThrow(() -> new ProductNotFoundException(id));
         return productMapper.toResponse(product);
     }
 

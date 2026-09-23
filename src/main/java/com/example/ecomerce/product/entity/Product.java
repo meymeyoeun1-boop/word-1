@@ -23,7 +23,7 @@ public class Product extends BaseEntity {
 
     private String description;
 
-    private Integer stock;
+    private Integer qty;
 
     @Column(name = "is_active")
     private Boolean isActive;
