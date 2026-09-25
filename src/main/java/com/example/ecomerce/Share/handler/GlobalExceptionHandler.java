@@ -1,6 +1,7 @@
 package com.example.ecomerce.Share.handler;
 
 import com.example.ecomerce.product.exception.ProductNotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,8 +25,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleProductNotFound(ProductNotFoundException ex) {
+    @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProductNotFound(ChangeSetPersister.NotFoundException ex) {
         ErrorResponse body = ErrorResponse.builder()
                 .status(HttpStatus.NOT_FOUND.value())
                 .error("Not found")

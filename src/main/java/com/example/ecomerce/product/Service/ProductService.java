@@ -1,22 +1,20 @@
 package com.example.ecomerce.product.Service;
 
-
 import com.example.ecomerce.product.dto.Request.ProductRequest;
+import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public  interface ProductService {
+public interface ProductService {
 
-    static List<ProductResponse> getAllProducts() {
-        return null;
-    }
+    List<ProductResponse> getAllProducts();
 
     ProductResponse getProductById(Long id);
 
     ProductResponse addProduct(ProductRequest request);
 
     void deleteProduct(Long id);
+
+    ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate);
 }

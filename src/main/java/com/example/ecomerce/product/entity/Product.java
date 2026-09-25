@@ -4,6 +4,7 @@ import com.example.ecomerce.Share.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -23,10 +24,12 @@ public class Product extends BaseEntity {
 
     private String description;
 
-    private Integer qty;
+    private Integer stock;
 
     @Column(name = "is_active")
     private Boolean isActive;
 
     private String category;
+
+
 }

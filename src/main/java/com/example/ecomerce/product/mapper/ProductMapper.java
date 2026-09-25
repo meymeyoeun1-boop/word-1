@@ -14,7 +14,8 @@ public interface ProductMapper {
 
     ProductResponse toResponse(Product product);
 
-    @Mapping(target = "qty",source = "stock")
+    @Mapping(target = "stock",source = "stock")
     Product toEntity (ProductRequest request);
 
+    ProductResponse productToProductResponse(Product savedProduct);
 }
