@@ -3,6 +3,8 @@ package com.example.ecomerce.product.mapper;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
 import com.example.ecomerce.product.entity.Product;
+import com.example.ecomerce.suppliers.dto.Response.SupplierResponse;
+import com.example.ecomerce.suppliers.entity.Supplier;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -18,4 +20,6 @@ public interface ProductMapper {
     Product toEntity (ProductRequest request);
 
     ProductResponse productToProductResponse(Product savedProduct);
+
+
 }

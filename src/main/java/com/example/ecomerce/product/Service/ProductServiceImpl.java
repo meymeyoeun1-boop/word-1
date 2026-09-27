@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
         oldData.setStock(requestUpdate.getStock());
 
         Product savedProduct = productRepository.save(oldData);
-        return productMapper.toResponse(savedProduct); // ប្រាកដថាប្រើ method name ត្រូវក្នុង Mapper
+        return productMapper.toResponse(savedProduct);
     }
 
     @Override
