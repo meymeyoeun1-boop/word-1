@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryRequest {
+public class CategoryRequestUpdate {
 
     @NotNull(message = "name is request")
     @Size(min = 2, max = 2500)

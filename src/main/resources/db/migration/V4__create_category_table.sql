@@ -5,4 +5,4 @@ CREATE TABLE categories(
      created_at TIMESTAMP WITHOUT TIME ZONE,
      update_at  TIMESTAMP WITHOUT TIME ZONE
 
-);
+); 

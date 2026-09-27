@@ -1,6 +1,7 @@
 package com.example.ecomerce.category.Service;
 
 import com.example.ecomerce.category.dto.Request.CategoryRequest;
+import com.example.ecomerce.category.dto.Request.CategoryRequestUpdate;
 import com.example.ecomerce.category.dto.Response.CategoryResponse;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,9 @@ public interface CategoryService {
     CategoryResponse getCategoryById(Long id);
 
     CategoryResponse addCategory(CategoryRequest request);
+
+    CategoryResponse deleteCategory(Long id);
+
+    CategoryResponse updateCategory(Long id, CategoryRequestUpdate requestUpdate);
 
 }
