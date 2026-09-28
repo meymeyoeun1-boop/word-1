@@ -6,10 +6,14 @@ import com.example.ecomerce.product.common.HttpBodyResponse;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
+import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.validation.Valid;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.data.jpa.domain.AbstractPersistable_;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
@@ -50,4 +54,5 @@ public class ProductController extends BaseRestController {
         ProductResponse updatedProduct = productService.updateProduct(id, requestUpdate);
         return responseSucceed(updatedProduct);
     }
+
 }

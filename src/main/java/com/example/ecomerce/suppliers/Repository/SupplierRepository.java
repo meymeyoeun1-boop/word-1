@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier,Long> {
     List<Supplier> id(Long id);
+
 }

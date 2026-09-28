@@ -1,10 +1,9 @@
 package com.example.ecomerce.product.entity;
 
 import com.example.ecomerce.Share.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import com.example.ecomerce.category.entity.Category;
+import com.example.ecomerce.suppliers.entity.Supplier;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -29,7 +28,11 @@ public class Product extends BaseEntity {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    private String category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 }

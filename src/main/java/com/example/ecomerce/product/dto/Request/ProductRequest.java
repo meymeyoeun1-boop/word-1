@@ -23,6 +23,8 @@ public class ProductRequest{
 
     private String description;
 
+    private Long supplierId;
+
 }
 
 

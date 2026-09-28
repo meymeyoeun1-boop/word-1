@@ -1,10 +1,11 @@
 package com.example.ecomerce.category.entity;
 
 import com.example.ecomerce.Share.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.example.ecomerce.product.entity.Product;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name="categories")
 @Builder
@@ -19,5 +20,8 @@ public class Category extends BaseEntity {
     private String name;
 
     private String description;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products;
 
 }

@@ -1,11 +1,10 @@
 package com.example.ecomerce.suppliers.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.ecomerce.product.entity.Product;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 
 
 @Entity
@@ -18,6 +17,7 @@ import lombok.*;
 public class Supplier {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -33,6 +33,9 @@ public class Supplier {
     private Boolean isActive;
 
     private String category;
+
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products;
 
 }
 

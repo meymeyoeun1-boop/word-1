@@ -1,5 +1,6 @@
 package com.example.ecomerce.product.Service;
 
+import aj.org.objectweb.asm.ConstantDynamic;
 import com.example.ecomerce.product.Repository.ProductRepository;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
@@ -7,11 +8,15 @@ import com.example.ecomerce.product.dto.Response.ProductResponse;
 import com.example.ecomerce.product.entity.Product;
 import com.example.ecomerce.product.exception.ProductNotFoundException;
 import com.example.ecomerce.product.mapper.ProductMapper;
+import com.example.ecomerce.suppliers.Repository.SupplierRepository;
+import com.example.ecomerce.suppliers.entity.Supplier;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final SupplierRepository supplierRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -67,5 +73,6 @@ public class ProductServiceImpl implements ProductService {
         }
         productRepository.deleteById(id);
     }
+
 
 }
