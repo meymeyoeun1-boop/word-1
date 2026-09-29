@@ -1,6 +1,7 @@
 package com.example.ecomerce.product.Service;
 
 import aj.org.objectweb.asm.ConstantDynamic;
+import com.example.ecomerce.category.Repository.CategoryRespository;
 import com.example.ecomerce.product.Repository.ProductRepository;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
@@ -25,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final SupplierRepository supplierRepository;
+    private final CategoryRespository categoryRespository;
 
     @Override
     @Transactional(readOnly = true)

@@ -1,5 +1,6 @@
 package com.example.ecomerce.suppliers.entity;
 
+import com.example.ecomerce.Share.BaseEntity;
 import com.example.ecomerce.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,11 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Supplier {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Supplier extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
@@ -27,7 +24,7 @@ public class Supplier {
 
     private String email;
 
-    private Integer phone;
+    private String phone;
 
     @Column(name = "is_active")
     private Boolean isActive;

@@ -11,9 +11,12 @@ import org.mapstruct.Mapping;
 public interface SupplierMapper {
 
     @Mapping(target = "id",source = "id")
+    @Mapping(target = "createdAt",source = "createdAt")
      SupplierResponse toResponse(Supplier supplier);
 
     @Mapping(target = "contact_person",source = "contact_person")
     Supplier toEntity (SupplierRequest request);
+
+
 }
 

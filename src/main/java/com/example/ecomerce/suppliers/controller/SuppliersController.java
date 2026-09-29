@@ -3,6 +3,7 @@ package com.example.ecomerce.suppliers.controller;
 
 import com.example.ecomerce.product.common.BaseRestController;
 import com.example.ecomerce.product.common.HttpBodyResponse;
+import com.example.ecomerce.product.dto.Response.ProductResponse;
 import com.example.ecomerce.suppliers.Service.SupplierService;
 import com.example.ecomerce.suppliers.dto.Request.SupplierRequest;
 import com.example.ecomerce.suppliers.dto.Request.SupplierRequestUpdate;
@@ -25,8 +26,9 @@ public class SuppliersController  extends BaseRestController {
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/list")
     public List<SupplierResponse> getAllSupplier() {
-        return supplierService.getAllSuppliers();
+        return  supplierService.getAllSuppliers();
     }
+
     @GetMapping("/{id}")
     public SupplierResponse getSupplierById(@PathVariable Long id )
     {return supplierService.getSupplierById(id);}

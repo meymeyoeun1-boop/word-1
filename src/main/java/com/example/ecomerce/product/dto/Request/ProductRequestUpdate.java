@@ -22,5 +22,9 @@ public class ProductRequestUpdate {
 
     private String description;
 
+    private Long categoryIds;
+
+    private Long supplierIds;
+
 
 }

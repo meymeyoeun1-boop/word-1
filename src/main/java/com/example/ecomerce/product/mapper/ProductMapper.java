@@ -13,10 +13,13 @@ import org.mapstruct.Mapping;
 public interface ProductMapper {
 
     @Mapping(target = "id",source = "id")
-
+    @Mapping(target = "categoryIds", source = "category.id")
+    @Mapping(target = "supplierIds", source = "supplier.id")
     ProductResponse toResponse(Product product);
 
     @Mapping(target = "stock",source = "stock")
+    @Mapping(target = "category", ignore = true)
+    @Mapping(target = "supplier", ignore = true)
     Product toEntity (ProductRequest request);
 
     ProductResponse productToProductResponse(Product savedProduct);

@@ -20,5 +20,5 @@ public class SupplierRequestUpdate {
     @NotNull(message = "email not null")
     private String email;
 
-    private Integer phone;
+    private String phone;
 }

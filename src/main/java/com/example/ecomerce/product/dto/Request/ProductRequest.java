@@ -23,7 +23,9 @@ public class ProductRequest{
 
     private String description;
 
-    private Long supplierId;
+    private Long categoryIds;
+
+    private Long supplierIds;
 
 }
 

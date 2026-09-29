@@ -20,7 +20,7 @@ public class SupplierRequest {
     @NotNull(message = "email not null")
     private String email;
 
-    private Integer phone;
+    private String phone;
 
 
 }
