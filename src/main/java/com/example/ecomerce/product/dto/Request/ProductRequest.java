@@ -27,6 +27,7 @@ public class ProductRequest{
 
     private Long supplierIds;
 
+
 }
 
 

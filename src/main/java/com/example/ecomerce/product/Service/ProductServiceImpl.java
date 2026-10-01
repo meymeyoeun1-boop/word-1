@@ -1,7 +1,8 @@
 package com.example.ecomerce.product.Service;
 
-import aj.org.objectweb.asm.ConstantDynamic;
 import com.example.ecomerce.category.Repository.CategoryRespository;
+import com.example.ecomerce.category.entity.Category;
+import com.example.ecomerce.category.exceptionCategory.CategoryNotFoundException;
 import com.example.ecomerce.product.Repository.ProductRepository;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
@@ -11,13 +12,13 @@ import com.example.ecomerce.product.exception.ProductNotFoundException;
 import com.example.ecomerce.product.mapper.ProductMapper;
 import com.example.ecomerce.suppliers.Repository.SupplierRepository;
 import com.example.ecomerce.suppliers.entity.Supplier;
+import com.example.ecomerce.suppliers.exceptionSupplier.SupplierNotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 @RequiredArgsConstructor
@@ -46,15 +47,25 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponse addProduct(ProductRequest request) {
+    public ProductResponse addProduct(ProductRequest request) throws ChangeSetPersister.NotFoundException {
+
         Product newProduct = productMapper.toEntity(request);
+        Category category = categoryRespository.findById(request.getCategoryIds())
+                .orElseThrow(() -> new CategoryNotFoundException(request.getCategoryIds()));
+
+        Supplier supplier = supplierRepository.findById(request.getSupplierIds())
+                .orElseThrow(() -> new SupplierNotFoundException(request.getSupplierIds()));
+
+        newProduct.setCategory(category);
+        newProduct.setSupplier(supplier);
         Product savedProduct = productRepository.save(newProduct);
         return productMapper.toResponse(savedProduct);
     }
 
+
     @Override
     @Transactional
-    public ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) {
+    public ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) throws ChangeSetPersister.NotFoundException {
         Product oldData = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
@@ -62,6 +73,17 @@ public class ProductServiceImpl implements ProductService {
         oldData.setPrice(requestUpdate.getPrice());
         oldData.setDescription(requestUpdate.getDescription());
         oldData.setStock(requestUpdate.getStock());
+        if (requestUpdate.getCategoryIds() != null) {
+            Category category = categoryRespository.findById(requestUpdate.getCategoryIds())
+                    .orElseThrow(() -> new CategoryNotFoundException(requestUpdate.getCategoryIds()));
+            oldData.setCategory(category);
+        }
+
+        if (requestUpdate.getSupplierIds() != null) {
+            Supplier supplier = supplierRepository.findById(requestUpdate.getSupplierIds())
+                    .orElseThrow(() -> new SupplierNotFoundException(requestUpdate.getSupplierIds()));
+            oldData.setSupplier(supplier);
+        }
 
         Product savedProduct = productRepository.save(oldData);
         return productMapper.toResponse(savedProduct);

@@ -3,6 +3,7 @@ package com.example.ecomerce.product.Service;
 import com.example.ecomerce.product.dto.Request.ProductRequest;
 import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
+import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.List;
 
@@ -12,11 +13,10 @@ public interface ProductService {
 
     ProductResponse getProductById(Long id);
 
-    ProductResponse addProduct(ProductRequest request);
+    ProductResponse addProduct(ProductRequest request) throws ChangeSetPersister.NotFoundException;
 
     void deleteProduct(Long id);
 
-    ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate);
-
+    ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) throws ChangeSetPersister.NotFoundException;
 
 }

@@ -8,6 +8,7 @@ import com.example.ecomerce.product.dto.Request.ProductRequestUpdate;
 import com.example.ecomerce.product.dto.Response.ProductResponse;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.validation.Valid;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.AbstractPersistable_;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class ProductController extends BaseRestController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HttpBodyResponse<ProductResponse>> addProduct(@Valid @RequestBody ProductRequest request) {
+    public ResponseEntity<HttpBodyResponse<ProductResponse>> addProduct(@Valid @RequestBody ProductRequest request) throws ChangeSetPersister.NotFoundException {
         return responseCreated(productService.addProduct(request));
     }
 
@@ -50,7 +51,7 @@ public class ProductController extends BaseRestController {
     @PutMapping("/{id}")
     public ResponseEntity<HttpBodyResponse<ProductResponse>> updateProduct(
             @PathVariable Long id,
-            @Valid @RequestBody ProductRequestUpdate requestUpdate) {
+            @Valid @RequestBody ProductRequestUpdate requestUpdate) throws ChangeSetPersister.NotFoundException {
         ProductResponse updatedProduct = productService.updateProduct(id, requestUpdate);
         return responseSucceed(updatedProduct);
     }
