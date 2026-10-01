@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponse addProduct(ProductRequest request) throws ChangeSetPersister.NotFoundException {
+    public ProductResponse addProduct(ProductRequest request) {
 
         Product newProduct = productMapper.toEntity(request);
         Category category = categoryRespository.findById(request.getCategoryIds())
@@ -65,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) throws ChangeSetPersister.NotFoundException {
+    public ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) {
         Product oldData = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 

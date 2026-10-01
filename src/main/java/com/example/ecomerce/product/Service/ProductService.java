@@ -13,10 +13,10 @@ public interface ProductService {
 
     ProductResponse getProductById(Long id);
 
-    ProductResponse addProduct(ProductRequest request) throws ChangeSetPersister.NotFoundException;
+    ProductResponse addProduct(ProductRequest request);
 
     void deleteProduct(Long id);
 
-    ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate) throws ChangeSetPersister.NotFoundException;
+    ProductResponse updateProduct(Long id, ProductRequestUpdate requestUpdate);
 
 }
